@@ -8,6 +8,7 @@ const StyledHeader = styled.header`
     align-items: center;
     gap: 10px;
     padding: 10px 31px;
+    padding-bottom: 61px;
 `;
 
 const StyledImage = styled.img`
