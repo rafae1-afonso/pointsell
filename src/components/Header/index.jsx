@@ -1,4 +1,3 @@
-import logoImage from '../../images/logo.png'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
@@ -7,14 +6,9 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    padding: 10px 31px;
+    padding: 21px 31px;
     padding-bottom: 61px;
 `;
-
-const StyledImage = styled.img`
-    width: 35px;
-    border-radius: 10px;
-`
 
 const StyledForm = styled.form`
     display: flex;
@@ -42,7 +36,6 @@ const SearchInput = styled.input`
 const Header = () => {
     return (
         <StyledHeader>
-            <StyledImage src={logoImage} />
             <StyledForm>
                 <SearchInput type='search' placeholder='Pesquisar Prato' />
             </StyledForm>

@@ -4,19 +4,21 @@ import styled from "styled-components";
 
 const AppContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 25px;
 `;
 
 const MainContainer = styled.main`
   display: flex;
+  flex-direction: column;
 `;
 
 function App() {
   return (
     <AppContainer>
-      <Header />
+      <AsideNav />
       <MainContainer>
-        <AsideNav />
+        <Header />
       </MainContainer>
     </AppContainer>
   )
