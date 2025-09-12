@@ -1,85 +1,75 @@
 import { HandPlatter, House, LayoutGrid, ReceiptText, Settings } from "lucide-react";
 import styled from "styled-components";
-import logoImage from '../../images/logo.png'
+import NavButtonLink from "../NavButton";
 
 const AsideContainer = styled.aside`
-    position: relative;
-    height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    padding: 23px 23px;
-`;
-
-const LogoContainer = styled.div`
-    display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
-    margin-bottom: 23px;
-`;
+    position: fixed;
+    bottom: 0;
+    padding: 15px;
+    background-color: white;
+    width: 100%;
 
-const StyledImage = styled.img`
-    width: 35px;
-    border-radius: 10px;
+    @media screen and (min-width: 1024px) {
+        height: 75vh;
+        flex-direction: column;
+        padding: 15px 25px;
+        justify-content: start;
+    }
 `;
 
 const NavContainer = styled.nav`
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 30px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    @media screen and (min-width: 1024px) {
+        flex-direction: column;
+        justify-content: start;
+        gap: 30px;
+    }
 `;
 
 const ConfigContainer = styled.div`
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: end;
     height: 100%;
-`;
 
-const Button = styled.button`
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    width: 50px;
-
-    & > p {
-        margin: 0;
-        font-size: 14px
+    @media screen and (min-width: 1024px) {
+        display: flex;
     }
 `;
 
 const AsideNav = () => {
     return (
         <AsideContainer>
-            <LogoContainer>
-                <StyledImage src={logoImage} />
-            </LogoContainer>
             <NavContainer>
-                <Button>
-                    <House size={30} />
+                <NavButtonLink toLink='/'>
+                    <House size={28} />
                     <p>Início</p>
-                </Button>
-                <Button>
-                    <LayoutGrid size={30} />
+                </NavButtonLink>
+                <NavButtonLink toLink='/cardapio'>
+                    <LayoutGrid size={28} />
                     <p>Cardápio</p>
-                </Button>
-                <Button>
-                    <ReceiptText size={30} />
+                </NavButtonLink>
+                <NavButtonLink toLink='/conta'>
+                    <ReceiptText size={28} />
                     <p>Conta</p>
-                </Button>
-                <Button>
-                    <HandPlatter size={30} />
+                </NavButtonLink>
+                <NavButtonLink toLink='/garcom'>
+                    <HandPlatter size={28} />
                     <p>Garçom</p>
-                </Button>
+                </NavButtonLink>
             </NavContainer>
             <ConfigContainer>
-                <Button>
-                    <Settings size={30} />
-                </Button>
+                <NavButtonLink>
+                    <Settings size={28} />
+                </NavButtonLink>
             </ConfigContainer>
         </AsideContainer>
     )
