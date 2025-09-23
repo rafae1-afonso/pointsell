@@ -1,20 +1,23 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const StyledButton = styled.button`
-    width: ${props => (props.rowDirection ? '155px' : '125px')};
-    display: flex;
-    flex-direction: ${props => (props.rowDirection ? 'row' : 'column' )};
-    align-items: center;
-    gap: 10px;
-    padding: 8px;
-    box-shadow: #0000001c 0 3px 8px 1px;
+    width: ${props => props.width};
+    height: ${props => props.height};
     border-radius: 8px;
-`
+    color: white;
+    background-color: #F26B38;
+    font-weight: 600;
+    font-size: 16px;
 
-const Button = ({ children, rowDirection = false }) => {
-    return (
-        <StyledButton rowDirection={rowDirection}>{children}</StyledButton>
-    )
-};
+    &:active {
+        background-color: #1DBF73;
+    }
+`;
 
-export default Button;
+const Button = ({children, width = '277px', height = '53px', onButtonClick = null}) => {
+    return <StyledButton width={width} height={height} onClick={onButtonClick}>
+        {children}
+    </StyledButton>
+}
+
+export default Button

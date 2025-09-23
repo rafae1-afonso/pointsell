@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import AsideNav from './components/AsideNav/index.jsx'
 import styled from 'styled-components'
 import Cardapio from './pages/Cardapio.jsx'
+import ProdutoPage from './pages/ProdutoPage.jsx'
+import ProductModalProvider from './providers/ProductModalProvider/index.jsx'
 
 const AppContainer = styled.div`
   display: flex;
@@ -12,8 +14,6 @@ const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 25px;
-  padding-bottom: 70px;
-  padding-top: 100px;
 `;
 
 const MainContainer = styled.main`
@@ -32,16 +32,19 @@ const MainContainer = styled.main`
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <AppContainer>
-      <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/cardapio' element={<Cardapio />} />
-        <Route path='/conta' element={<App />} />
-        <Route path='/garcom' element={<App />} />
-      </Routes>
-      <MainContainer>
-        <AsideNav />
-      </MainContainer>
-    </AppContainer>
+    <ProductModalProvider>
+      <AppContainer>
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='/cardapio' element={<Cardapio />} />
+          <Route path='/cardapio/:id' element={<ProdutoPage />} />
+          <Route path='/conta' element={<App />} />
+          <Route path='/garcom' element={<App />} />
+        </Routes>
+        <MainContainer>
+          <AsideNav />
+        </MainContainer>
+      </AppContainer>
+    </ProductModalProvider>
   </BrowserRouter>,
 )

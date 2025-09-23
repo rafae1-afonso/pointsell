@@ -10,12 +10,13 @@ import Pizza from "./images/Inicio/Pizza.png";
 import Caesar from "./images/Inicio/Caesar.png";
 import Sauvignon from "./images/Inicio/Sauvignon.png";
 
-import Button from "./components/Button";
 import NewsCard from "./components/NewsCard";
 import ScrollCarousel from "./components/ScrollCarousel";
 
 import { CaroucelButtons } from "./constants";
 import Header from "./components/Header";
+import TagCategoria from "./components/TagCategoria";
+import ProductModalProvider from "./providers/ProductModalProvider";
 
 const AppContainer = styled.div`
   display: flex;
@@ -23,6 +24,8 @@ const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 25px;
+  padding-bottom: 70px;
+  padding-top: 100px;
 `;
 
 const MainContainer = styled.main`
@@ -63,45 +66,47 @@ const NewsSection = styled.section`
 function App() {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
-  return <AppContainer>
-    <Header tagsCarouselVisible={false} />
-    <MainContainer>
-      <section className="embla">
-        <div className="embla__viewport" ref={emblaRef}>
-          <div className="embla__container">
-            <div className="embla__slide">
-              <StyledImg src={Banner1} />
-            </div>
-            <div className="embla__slide">
-              <StyledImg src={Banner2} />
-            </div>
-            <div className="embla__slide">
-              <StyledImg src={Banner3} />
+  return (
+    <AppContainer>
+      <Header tagsCarouselVisible={false} />
+      <MainContainer>
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaRef}>
+            <div className="embla__container">
+              <div className="embla__slide">
+                <StyledImg src={Banner1} />
+              </div>
+              <div className="embla__slide">
+                <StyledImg src={Banner2} />
+              </div>
+              <div className="embla__slide">
+                <StyledImg src={Banner3} />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <ScrollCarousel>
-        {
-          CaroucelButtons.map((button, key) => (
-            <li>
-              <Button key={key}>
-                <button.icon /> {button.content}
-              </Button>
-            </li>
-          ))
-        }
-      </ScrollCarousel>
-      <NewsSection>
-        <h1>Novidades!</h1>
+        </section>
         <ScrollCarousel>
-          <NewsCard imageSrc={Pizza} Title="Pizza de Margerita" Description="Clássico tomate e mozzarella" />
-          <NewsCard imageSrc={Caesar} Title="Salada Caesar" Description="Crisp romaine com parmesão" />
-          <NewsCard imageSrc={Sauvignon} Title="Sauvignon Blanc" Description="Aromas cítricos marcantes" />
+          {
+            CaroucelButtons.map((button, key) => (
+              <li key={key}>
+                <TagCategoria>
+                  <button.icon /> {button.content}
+                </TagCategoria>
+              </li>
+            ))
+          }
         </ScrollCarousel>
-      </NewsSection>
-    </MainContainer>
-  </AppContainer>
+        <NewsSection>
+          <h1>Novidades!</h1>
+          <ScrollCarousel>
+            <NewsCard imageSrc={Pizza} Title="Pizza de Margerita" Description="Clássico tomate e mozzarella" />
+            <NewsCard imageSrc={Caesar} Title="Salada Caesar" Description="Crisp romaine com parmesão" />
+            <NewsCard imageSrc={Sauvignon} Title="Sauvignon Blanc" Description="Aromas cítricos marcantes" />
+          </ScrollCarousel>
+        </NewsSection>
+      </MainContainer>
+    </AppContainer>
+  )
 
 };
 

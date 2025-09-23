@@ -16,6 +16,10 @@
 
 }
 
+* {
+  color: #1D1C1C;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -39,6 +43,10 @@ button {
   font-size: 1em;
   font-family: inherit;
   cursor: pointer;
+}
+
+li::marker {
+  color: transparent;
 }
 
 @media (prefers-color-scheme: light) {

@@ -4,7 +4,7 @@ import logoImage from '/logo.png';
 import useWindowDimensions from '../../hooks/UseWindowDimensions';
 import { CaroucelButtons } from '../../constants';
 import ScrollCarousel from '../ScrollCarousel';
-import Button from '../Button';
+import TagCategoria from '../TagCategoria';
 
 const HeaderContainer = styled.div`
     position: fixed;
@@ -93,9 +93,9 @@ const Header = ({ tagsCarouselVisible = true }) => {
                     {
                         CaroucelButtons.map((button, key) => (
                             <li key={key}>
-                                <Button  rowDirection={true}>
+                                <TagCategoria rowDirection={true}>
                                     <button.icon /> {button.content}
-                                </Button>
+                                </TagCategoria>
                             </li>
                         ))
                     }

@@ -1,10 +1,15 @@
+import { Link } from "react-router";
 import styled from "styled-components"
+import CurrencyFormatNumber from "../../services/CurrencyFormatNumber";
+import { useContext } from "react";
+import { ProductModalContext } from "../../contexts/ProductModalContext";
 
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     box-shadow: #0000001c 0 3px 8px 1px;
     width: 176px;
+    min-height: 280px;
     background-color: transparent;
 
     & > img {
@@ -18,6 +23,7 @@ const CardContainer = styled.div`
     & > div {
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
         padding: 5px 15px;
         height: 100%;
 
@@ -29,23 +35,35 @@ const CardContainer = styled.div`
             font-size: 18px;
             font-weight: 600;
             color: #F26B38;
-            margin-top: auto;
+            margin: 0;
+            ;
         }
     }
 `;
 
-const CardapioCard = ({ title, price, imgSrc }) => {
-    return <CardContainer>
+const CardapioCard = ({ title, price, imgSrc, desc }) => {
+
+    const {
+        setProductInfo,
+        setModalVisible
+    } = useContext(ProductModalContext);
+
+    return <CardContainer onClick={() => {
+        setProductInfo({
+            title: title,
+            price: price,
+            imgSrc: imgSrc,
+            desc: desc
+        })
+        setModalVisible(true)
+    }}>
         <img src={imgSrc} alt={title} />
         <div>
             <h1>{title}</h1>
             <p>
-                 {
-                    new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    }).format(price)
-                 }
+                {
+                    CurrencyFormatNumber(price)
+                }
             </p>
         </div>
     </CardContainer>

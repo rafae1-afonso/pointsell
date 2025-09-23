@@ -37,8 +37,27 @@ export const CaroucelButtons = [
   {
     content: 'Sem Glúten',
     icon: WheatOff
-  },
+  }
 ];
+
+export const Categorias = {
+  menuDoDia: {
+    content: 'Menu do Dia',
+    icon: ChefHat
+  },
+  maisPedidos: {
+    content: 'Mais Pedidos',
+    icon: FlameIcon
+  },
+  novidades: {
+    content: 'Novidades',
+    icon: Sparkles
+  },
+  promocoes: {
+    content: 'Promoções',
+    icon: CircleDollarSign
+  },
+}
 
 async function getProdutos() {
   try {
