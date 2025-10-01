@@ -3,6 +3,7 @@ import styled from "styled-components"
 import CurrencyFormatNumber from "../../services/CurrencyFormatNumber";
 import { useContext } from "react";
 import { ProductModalContext } from "../../contexts/ProductModalContext";
+import useWindowDimensions from "../../hooks/UseWindowDimensions";
 
 const CardContainer = styled.div`
     display: flex;
@@ -11,6 +12,14 @@ const CardContainer = styled.div`
     width: 176px;
     min-height: 280px;
     background-color: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    @media screen and ( min-width: 1024px ) {
+        background-color: white;
+        padding: 10px;
+        border: .5px solid #0000002f;
+    }
 
     & > img {
         width: 176px;
@@ -18,6 +27,10 @@ const CardContainer = styled.div`
         border-top-left-radius: 18px;
         border-top-right-radius: 18px;
         object-fit: cover;
+
+        @media screen and ( min-width: 1024px ) {
+            border-radius: 10px;
+        }
     }
 
     & > div {
@@ -31,31 +44,38 @@ const CardContainer = styled.div`
             font-size: 18px;
             margin-bottom: 6px;
         }
+
         & > p {
             font-size: 18px;
             font-weight: 600;
             color: #F26B38;
             margin: 0;
-            ;
         }
     }
 `;
 
-const CardapioCard = ({ title, price, imgSrc, desc }) => {
+const CardapioCard = ({ productId, title, price, imgSrc, desc }) => {
+
+    const { width } = useWindowDimensions();
 
     const {
         setProductInfo,
-        setModalVisible
+        setModalVisible,
+        setPage,
     } = useContext(ProductModalContext);
 
     return <CardContainer onClick={() => {
+        if (width >= 1024) {
+            setPage(1);
+        }
         setProductInfo({
+            id: productId,
             title: title,
             price: price,
             imgSrc: imgSrc,
             desc: desc
-        })
-        setModalVisible(true)
+        });
+        setModalVisible(true);
     }}>
         <img src={imgSrc} alt={title} />
         <div>

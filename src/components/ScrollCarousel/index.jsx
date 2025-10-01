@@ -12,6 +12,10 @@ const CaroucelMenu = styled.section`
     scrollbar-width: none;
     padding: 10px 20px;
     margin: 0;
+
+    @media screen and ( min-width: 1024px ) {
+        scrollbar-width: thin;
+    }
   }
 `;
 

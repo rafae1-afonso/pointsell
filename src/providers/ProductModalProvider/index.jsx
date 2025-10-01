@@ -2,8 +2,9 @@ import { useState } from "react";
 import { ProductModalContext } from "../../contexts/ProductModalContext";
 
 export const ProductModalProvider = ({ children }) => {
-    const [modalVisible, setModalVisible] = useState(false)
-    const [productInfo, setProductInfo] = useState({})
+    const [modalVisible, setModalVisible] = useState(false);
+    const [productInfo, setProductInfo] = useState({});
+    const [page, setPage] = useState(0);
 
     return (
         <ProductModalContext.Provider value={{
@@ -11,6 +12,8 @@ export const ProductModalProvider = ({ children }) => {
             setModalVisible,
             productInfo,
             setProductInfo,
+            page,
+            setPage,
         }}>
             {children}
         </ProductModalContext.Provider>

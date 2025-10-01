@@ -6,17 +6,14 @@ import './styles/embla.css';
 import Banner1 from './images/Inicio/Banner.jpg';
 import Banner2 from './images/Inicio/Banner2.png';
 import Banner3 from './images/Inicio/Banner3.png';
-import Pizza from "./images/Inicio/Pizza.png";
-import Caesar from "./images/Inicio/Caesar.png";
-import Sauvignon from "./images/Inicio/Sauvignon.png";
 
 import NewsCard from "./components/NewsCard";
 import ScrollCarousel from "./components/ScrollCarousel";
 
-import { CaroucelButtons } from "./constants";
+import { CaroucelButtons, produtosAPI } from "./constants";
 import Header from "./components/Header";
 import TagCategoria from "./components/TagCategoria";
-import ProductModalProvider from "./providers/ProductModalProvider";
+import useWindowDimensions from "./hooks/UseWindowDimensions";
 
 const AppContainer = styled.div`
   display: flex;
@@ -26,6 +23,10 @@ const AppContainer = styled.div`
   gap: 25px;
   padding-bottom: 70px;
   padding-top: 100px;
+
+  @media screen and ( min-width: 1024px ) {
+    padding-bottom: 0;
+  }
 `;
 
 const MainContainer = styled.main`
@@ -37,17 +38,29 @@ const MainContainer = styled.main`
   gap: 10px;
 
   @media screen and ( min-width: 1024px ) {
-    flex-direction: row;
     justify-content: start;
-    align-items: center;
+    align-items: flex-start;
+    width: 82vw;
   }
 `;
 
+const BannersSection = styled.section`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+`
+
 const StyledImg = styled.img`
-  width: 342px;
+  width: 300px;
   height: 218px;
   object-fit: cover;
   border-radius: 12px;
+
+  @media screen and ( min-width: 1024px ) {
+    width: 380px;
+  }
 `;
 
 const NewsSection = styled.section`
@@ -65,26 +78,36 @@ const NewsSection = styled.section`
 
 function App() {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+  const { width } = useWindowDimensions();
 
   return (
     <AppContainer>
       <Header tagsCarouselVisible={false} />
       <MainContainer>
-        <section className="embla">
-          <div className="embla__viewport" ref={emblaRef}>
-            <div className="embla__container">
-              <div className="embla__slide">
-                <StyledImg src={Banner1} />
+        {
+          width >= 1024 ?
+            <BannersSection>
+              <StyledImg src={Banner1} />
+              <StyledImg src={Banner2} />
+              <StyledImg src={Banner3} />
+            </BannersSection>
+            :
+            <section className="embla">
+              <div className="embla__viewport" ref={emblaRef}>
+                <div className="embla__container">
+                  <div className="embla__slide">
+                    <StyledImg src={Banner1} />
+                  </div>
+                  <div className="embla__slide">
+                    <StyledImg src={Banner2} />
+                  </div>
+                  <div className="embla__slide">
+                    <StyledImg src={Banner3} />
+                  </div>
+                </div>
               </div>
-              <div className="embla__slide">
-                <StyledImg src={Banner2} />
-              </div>
-              <div className="embla__slide">
-                <StyledImg src={Banner3} />
-              </div>
-            </div>
-          </div>
-        </section>
+            </section>
+        }
         <ScrollCarousel>
           {
             CaroucelButtons.map((button, key) => (
@@ -99,9 +122,12 @@ function App() {
         <NewsSection>
           <h1>Novidades!</h1>
           <ScrollCarousel>
-            <NewsCard imageSrc={Pizza} Title="Pizza de Margerita" Description="Clássico tomate e mozzarella" />
-            <NewsCard imageSrc={Caesar} Title="Salada Caesar" Description="Crisp romaine com parmesão" />
-            <NewsCard imageSrc={Sauvignon} Title="Sauvignon Blanc" Description="Aromas cítricos marcantes" />
+            {
+              produtosAPI.novidade.map(produto => (
+                <NewsCard key={produto.id} imageSrc="https://theme-assets.getbento.com/sensei/e68cf53.sensei/assets/images/catering-item-placeholder-704x520.png" Title={produto.nome} Description={produto.descricao} />
+
+              ))
+            }
           </ScrollCarousel>
         </NewsSection>
       </MainContainer>

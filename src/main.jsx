@@ -2,11 +2,16 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import AsideNav from './components/AsideNav/index.jsx'
 import styled from 'styled-components'
+
+import AsideNav from './components/AsideNav/index.jsx'
+
 import Cardapio from './pages/Cardapio.jsx'
-import ProdutoPage from './pages/ProdutoPage.jsx'
+import Conta from './pages/Conta.jsx'
+
 import ProductModalProvider from './providers/ProductModalProvider/index.jsx'
+import ShoppingCartProvider from './providers/ShoppingCartProvider/index.jsx'
+import Garçom from './pages/Garçom.jsx'
 
 const AppContainer = styled.div`
   display: flex;
@@ -32,19 +37,20 @@ const MainContainer = styled.main`
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <ProductModalProvider>
-      <AppContainer>
-        <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/cardapio' element={<Cardapio />} />
-          <Route path='/cardapio/:id' element={<ProdutoPage />} />
-          <Route path='/conta' element={<App />} />
-          <Route path='/garcom' element={<App />} />
-        </Routes>
-        <MainContainer>
-          <AsideNav />
-        </MainContainer>
-      </AppContainer>
-    </ProductModalProvider>
+    <ShoppingCartProvider>
+      <ProductModalProvider>
+        <AppContainer>
+          <Routes>
+            <Route path='/' element={<App />} />
+            <Route path='/cardapio' element={<Cardapio />} />
+            <Route path='/conta' element={<Conta />} />
+            <Route path='/garcom' element={<Garçom />} />
+          </Routes>
+          <MainContainer>
+            <AsideNav />
+          </MainContainer>
+        </AppContainer>
+      </ProductModalProvider>
+    </ShoppingCartProvider>
   </BrowserRouter>,
 )

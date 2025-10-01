@@ -1,4 +1,5 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
 import styled from "styled-components"
 
 const AmountContainer = styled.main`
@@ -7,7 +8,7 @@ const AmountContainer = styled.main`
     padding: 5px 10px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 12px;
 
     & > div {
@@ -27,25 +28,40 @@ const AmountButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-self: flex-start;
     background-color: ${props => props.backgrondcolor};
 `;
 
-const AmountComponent = ({ removeButton }) => {
+const AmountComponent = ({removeButton, amount = 0, onAmountChange }) => {
+    const [counter, setCounter] = useState(amount);
+
+    function updateCounter(value) {
+        if ((counter + value) >= 0) {
+            setCounter(counter + value);
+        }
+        onAmountChange(counter + value, value);
+    };
+
     return <AmountContainer>
         {
             !removeButton ?
-                <AmountButton backgrondcolor="#9898983b">
+                counter > 0 && <AmountButton backgrondcolor="#9898983b" onClick={() => updateCounter(-1)}>
                     <Minus size={18} color="#41414F" />
                 </AmountButton>
                 :
-                <AmountButton backgrondcolor="#fd0b0b40">
-                    <Trash2 size={18} color="#E82727" />
-                </AmountButton>
+                counter > 1 ?
+                    <AmountButton backgrondcolor="#9898983b" onClick={() => updateCounter(-1)}>
+                        <Minus size={18} color="#41414F" />
+                    </AmountButton>
+                    :
+                    <AmountButton backgrondcolor="#fd0b0b40" onClick={() => updateCounter(-1)}>
+                        <Trash2 size={18} color="#E82727" />
+                    </AmountButton>
         }
         <div>
-            0
+            {counter}
         </div>
-        <AmountButton backgrondcolor="#f680203b">
+        <AmountButton backgrondcolor="#f680203b" onClick={() => updateCounter(1)}>
             <Plus size={18} color="#F67F20" />
         </AmountButton>
     </AmountContainer>

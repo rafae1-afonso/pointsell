@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ScrollCarousel from "../components/ScrollCarousel";
-import { produtosAPI } from "../constants";
+import { CaroucelButtons, produtosAPI } from "../constants";
 import CardapioSection from "../components/CardapioSection";
 import CardapioCard from "../components/CardapioCard";
 
@@ -8,18 +8,24 @@ import Header from "../components/Header";
 import { useContext } from "react";
 import PedidoModal from "../components/PedidoModal";
 import { ProductModalContext } from "../contexts/ProductModalContext";
+import TagCategoria from "../components/TagCategoria";
 
 const PageBodyContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding-bottom: 70px;
-    padding-top: 100px;
+    padding-top: 70px;
 `;
 
 const MainContainer = styled.main`
     display: flex;
     flex-direction: column;
     padding-top: 30px;
+
+    @media screen and ( min-width: 1024px ) {
+        width: 85vw;
+    }
+
 `;
 
 const Cardapio = () => {
@@ -29,10 +35,21 @@ const Cardapio = () => {
     } = useContext(ProductModalContext);
 
     return <>
+        <Header />
         {
             !modalVisible ? <PageBodyContainer>
-                <Header />
                 <MainContainer>
+                    <ScrollCarousel>
+                        {
+                            CaroucelButtons.map((button, key) => (
+                                <li key={key}>
+                                    <TagCategoria rowDirection={true}>
+                                        <button.icon /> {button.content}
+                                    </TagCategoria>
+                                </li>
+                            ))
+                        }
+                    </ScrollCarousel>
                     <CardapioSection title="Menu do Dia">
                         <ScrollCarousel>
                             {

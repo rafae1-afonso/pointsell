@@ -5,11 +5,12 @@ const CardContainer = styled.div`
     flex-direction: column;
     width: 184px;
 
-
     & > img {
         width: 184px;
+        height: 184px;
         border-radius: 12px;
         margin-bottom: 8px;
+        object-fit: cover;
     };
 
     & > h1 {

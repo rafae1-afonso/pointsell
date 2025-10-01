@@ -3,15 +3,20 @@ import TagCategoria from "../TagCategoria";
 import { Categorias } from "../../constants";
 import CurrencyFormatNumber from "../../services/CurrencyFormatNumber";
 import { CircleChevronLeft } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProductModalContext } from "../../contexts/ProductModalContext";
 import Button from "../Button";
-import AdditionalCard from "../AdditionalCard";
+import ShoppingCartPage from "../ShoppingCartPage";
+import CustomizeProduct from "../CustomizeProduct";
 
 const ModalMainContainer = styled.main`
    display: flex;
    flex-direction: column;
    width: 100%;
+
+    @media screen and ( min-width: 1024px ) {
+        width: 80%;
+    }
 `;
 
 const ProductImage = styled.div`
@@ -85,102 +90,21 @@ const NextButtonContainer = styled.div`
     justify-content: center;
 `;
 
-// eslint-disable-next-line no-unused-vars
-const page1Components = {
-    MainContainer: styled.main`
-        display: flex;
-        flex-direction: column;
-    `,
-
-    Header: styled.header`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 30px 0;
-
-        & > button {
-            display: flex;
-            align-items: center;
-            margin: 0;
-            margin-left: 10px;
-            position: absolute;
-        }
-
-        & > h1 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-right: auto;
-            margin: auto;
-        }
-    `,
-
-    AdditionalsContainer: styled.div`
-        display: flex;
-        flex-direction: column;
-        padding: 0 50px;
-
-        & > h2 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        & > ul {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-    `,
-
-    RemoveContainer: styled.div`
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 0 50px;
-
-        & > h2 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-    `,
-}
-
 const PedidoModal = () => {
 
-    const [page, setPage] = useState(0)
+    const {page, setPage} = useContext(ProductModalContext);
 
     function getPage(page) {
         switch (page) {
             case 1:
-                return (
-                    <page1Components.MainContainer>
-                        <page1Components.Header>
-                            <button onClick={() => setPage(--page)}>
-                                <CircleChevronLeft color="black" size={28} />
-                            </button>
-                            <h1>Customize o seu Pedido</h1>
-                        </page1Components.Header>
-                        <page1Components.AdditionalsContainer>
-                            <h2>Adicionais</h2>
-                            <ul>
-                                <li><AdditionalCard title="Adicional" price={1.5}/></li>
-                                <li><AdditionalCard title="Adicional" price={2}/></li>
-                                <li><AdditionalCard title="Adicional" price={1}/></li>
-                            </ul>
-                        </page1Components.AdditionalsContainer>
-                        <page1Components.RemoveContainer>
-                            <h2>Retirar</h2>
-                            <ul>
-                            </ul>
-                        </page1Components.RemoveContainer>
-                    </page1Components.MainContainer>
+                return (<>
+                    <CustomizeProduct pageProps={[page, setPage]} />
+                    <ShoppingCartPage />
+                </>
                 )
             case 2:
                 return (
-                    <>
-
-                    </>
+                    <ShoppingCartPage />
                 )
             default:
                 return (

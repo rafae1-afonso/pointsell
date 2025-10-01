@@ -5,6 +5,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: ${props => (props.rowdirection ? 'row' : 'column' )};
     align-items: center;
+    justify-content: flex-start;
     gap: 10px;
     padding: 8px;
     box-shadow: #0000001c 0 3px 8px 1px;

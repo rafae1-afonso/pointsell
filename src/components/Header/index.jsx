@@ -1,10 +1,10 @@
-import { Search, ShoppingCart } from 'lucide-react';
+import { Search } from 'lucide-react';
 import styled from 'styled-components';
 import logoImage from '/logo.png';
-import useWindowDimensions from '../../hooks/UseWindowDimensions';
 import { CaroucelButtons } from '../../constants';
 import ScrollCarousel from '../ScrollCarousel';
 import TagCategoria from '../TagCategoria';
+import ShoppingCartComponent from '../ShoppingCartComponent';
 
 const HeaderContainer = styled.div`
     position: fixed;
@@ -64,7 +64,6 @@ const SearchInput = styled.input`
     width: 100%;
     border: none;
     
-
     &:focus {
         outline: none;
     }
@@ -74,10 +73,7 @@ const SearchInput = styled.input`
     }
 `
 
-const Header = ({ tagsCarouselVisible = true }) => {
-    const { width } = useWindowDimensions();
-
-
+const Header = () => {
     return <HeaderContainer>
         <StyledHeader>
             <StyledImage src={logoImage} />
@@ -85,24 +81,8 @@ const Header = ({ tagsCarouselVisible = true }) => {
                 <SearchInput type='search' placeholder='Pesquisar Prato' />
                 <Search color='#BBBBBB' size={24} />
             </StyledForm>
-            <ShoppingCartContainer><ShoppingCart color='black' size={width > 1024 ? 26 : 36} strokeWidth={1} /></ShoppingCartContainer>
+            <ShoppingCartComponent />
         </StyledHeader>
-        {
-            tagsCarouselVisible && (
-                <ScrollCarousel>
-                    {
-                        CaroucelButtons.map((button, key) => (
-                            <li key={key}>
-                                <TagCategoria rowDirection={true}>
-                                    <button.icon /> {button.content}
-                                </TagCategoria>
-                            </li>
-                        ))
-                    }
-                </ScrollCarousel>
-            )
-
-        }
     </HeaderContainer>
 }
 

@@ -7,16 +7,18 @@ const AsideContainer = styled.aside`
     flex-direction: row;
     justify-content: center;
     position: fixed;
+    z-index: 2;
     bottom: 0;
     padding: 15px;
     background-color: white;
     width: 100%;
 
     @media screen and (min-width: 1024px) {
-        height: 75vh;
+        height: 80vh;
         flex-direction: column;
         padding: 15px 25px;
         justify-content: start;
+        width: 4%;
     }
 `;
 
