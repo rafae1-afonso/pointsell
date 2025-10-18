@@ -1,9 +1,6 @@
 import { Search } from 'lucide-react';
 import styled from 'styled-components';
 import logoImage from '/logo.png';
-import { CaroucelButtons } from '../../constants';
-import ScrollCarousel from '../ScrollCarousel';
-import TagCategoria from '../TagCategoria';
 import ShoppingCartComponent from '../ShoppingCartComponent';
 
 const HeaderContainer = styled.div`

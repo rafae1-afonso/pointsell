@@ -6,7 +6,7 @@ import { CircleChevronLeft } from 'lucide-react';
 import AdditionalCard from '../AdditionalCard';
 import RemoveCard from '../RemoveCard';
 import Button from '../Button';
-import useWindowDimensions from '../../hooks/UseWindowDimensions';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 // eslint-disable-next-line no-unused-vars
 const customizeProductComponents = {

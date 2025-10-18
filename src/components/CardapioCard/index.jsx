@@ -3,7 +3,7 @@ import styled from "styled-components"
 import CurrencyFormatNumber from "../../services/CurrencyFormatNumber";
 import { useContext } from "react";
 import { ProductModalContext } from "../../contexts/ProductModalContext";
-import useWindowDimensions from "../../hooks/UseWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const CardContainer = styled.div`
     display: flex;
