@@ -6,7 +6,7 @@ import Button from '../Button';
 import OrderCard from '../OrderCard';
 import { ProductModalContext } from '../../contexts/ProductModalContext';
 import CurrencyFormatNumber from '../../services/CurrencyFormatNumber';
-import useWindowDimensions from '../../hooks/UseWindowDimensions';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 // eslint-disable-next-line no-unused-vars
 const shoppingCartComponents = {

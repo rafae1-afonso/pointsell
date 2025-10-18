@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import useWindowDimensions from '../../hooks/UseWindowDimensions';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { ShoppingCart } from 'lucide-react';
 import ShoppingCartPage from '../ShoppingCartPage';
 import { useContext } from 'react';
