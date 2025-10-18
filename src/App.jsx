@@ -13,7 +13,7 @@ import ScrollCarousel from "./components/ScrollCarousel";
 import { CaroucelButtons, produtosAPI } from "./constants";
 import Header from "./components/Header";
 import TagCategoria from "./components/TagCategoria";
-import useWindowDimensions from "./hooks/UseWindowDimensions";
+import useWindowDimensions from "./hooks/UseWindowDimensions.js";
 
 const AppContainer = styled.div`
   display: flex;
